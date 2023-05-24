@@ -1,7 +1,13 @@
+import styled from "styled-components";
+const Container = styled.div`
+  font-size: 21px;
+  color: gray;
+`;
+
 export default function Home(): JSX.Element {
   return (
     <>
-      <div>안녕</div>
+      <Container>안녕</Container>
     </>
   );
 }

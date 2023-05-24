@@ -4,7 +4,7 @@ modue.exports = {
     es6: true,
     node: true,
   },
-  extends: ["airbnb"],
+  extends: ["airbnb", "prettier"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
@@ -18,7 +18,7 @@ modue.exports = {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
   },
-  plugins: ["react", "@typescript-eslint"],
+  plugins: ["react", "@typescript-eslint", "prettier"],
   rules: {
     "react/jsx-filename-extension": [
       1,
