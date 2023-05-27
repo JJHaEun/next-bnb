@@ -1,4 +1,4 @@
-import { SignUpModalContainer } from "../styles/modal/signUpModal.styles";
+import { SignUpModalContainer } from "../styles/modal/signModal.styles";
 
 export default function SignUpModal(): JSX.Element {
   return (
