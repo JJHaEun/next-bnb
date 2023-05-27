@@ -10,7 +10,7 @@ const globalStyle = css`
   }
   body {
     color: ${palette.black_22};
-    font-family: "Noto Sans", "Noto Sans KR", sans-serif;
+    font-family: "AppleSDGothicNeo", "Noto Sans", "Noto Sans KR", sans-serif;
   }
 `;
 export const GlobalStyle = createGlobalStyle`
