@@ -3,7 +3,7 @@ import SignUpModal from "../auth/signUpModal";
 import ModalPortal from "../commons/modal/modalPotal";
 import AirBnBIconComponents from "../commons/svg/logoIcon";
 import AirBnBLogoTextComponents from "../commons/svg/logoText";
-import { useShowModalSign } from "../event/useShowModalSign";
+import { useShowModalSign } from "../event/hooks/useModal";
 import * as S from "../styles/header/header.styles";
 
 export default function Header(): JSX.Element {
