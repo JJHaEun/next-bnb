@@ -11,6 +11,7 @@ const globalStyle = css`
   body {
     color: ${palette.black_22};
     font-family: "AppleSDGothicNeo", "Noto Sans", "Noto Sans KR", sans-serif;
+    font-size: 16px;
   }
 `;
 export const GlobalStyle = createGlobalStyle`
