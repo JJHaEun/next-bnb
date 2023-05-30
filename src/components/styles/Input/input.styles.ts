@@ -10,7 +10,7 @@ import palette from "../../../../styles/palette";
 
 export const InputContainer = styled.div<{
   iconExist?: boolean;
-  error?: boolean;
+  error?: string;
 }>`
   // 2. 여기다가 바로 타입을 적는 방법.
   > input {

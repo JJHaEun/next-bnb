@@ -3,7 +3,7 @@ import { InputContainer } from "../styles/Input/input.styles";
 
 interface InputIProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: JSX.Element;
-  error?: boolean;
+  error?: string;
 }
 
 export default function Input({

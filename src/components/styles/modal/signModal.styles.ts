@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import palette from "../../../../styles/palette";
 
 export const SignUpModalContainer = styled.form`
   width: 568px;
@@ -19,6 +20,33 @@ export const SignUpModalContainer = styled.form`
   }
   .input-wrap {
     position: relative;
+    /* width: 568px; */
+  }
+  .select-section {
+    padding: 16px 0;
+  }
+  .signUp-birthday {
+    font-weight: 600;
+    padding-bottom: 8px;
+  }
+  .signUp-modal-birthday-info {
+    font-size: 14px;
+    color: ${palette.gray_48};
+  }
+  .signUp-birthday-selector {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 24px;
+    gap: 16px;
+  }
+  .signUp-month-selector {
+    flex-grow: 1; // 균등하게 나눠줄 수 있음..
+  }
+  .signUp-day-selector {
+    width: 25%;
+  }
+  .signUp-year-selector {
+    width: 33.3333%;
   }
 `;
 export const SignInModalContainer = styled.div`

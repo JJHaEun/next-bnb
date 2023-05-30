@@ -8,6 +8,8 @@ export const Container = styled.div`
   height: 80px;
   display: flex;
   justify-content: space-between;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.08) 0 1px 12px;
   padding-left: 80px;
   align-items: center;
   z-index: 10;

@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 
-export const useSignUp = () => {
+export const useSignUpInput = () => {
   const [user, setUser] = useState({
     email: "",
     lastName: "",
