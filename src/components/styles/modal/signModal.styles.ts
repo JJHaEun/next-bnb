@@ -51,6 +51,10 @@ export const SignUpModalContainer = styled.form`
   .signUp-modal-submit-button-wrap {
     padding-bottom: 16px;
     border-bottom: 1px solid ${palette.gray_eb};
+    > button {
+      background-color: ${palette.bittersweet};
+      padding: 14.5px 222px;
+    }
   }
   .signUp-Under-Move-to-Login {
     padding: 16px 0 32px 0;
