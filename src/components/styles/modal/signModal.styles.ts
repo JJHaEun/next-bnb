@@ -48,6 +48,21 @@ export const SignUpModalContainer = styled.form`
   .signUp-year-selector {
     width: 33.3333%;
   }
+  .signUp-modal-submit-button-wrap {
+    padding-bottom: 16px;
+    border-bottom: 1px solid ${palette.gray_eb};
+  }
+  .signUp-Under-Move-to-Login {
+    padding: 16px 0 32px 0;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
+  .move-login {
+    font-weight: 600;
+    color: ${palette.dark_cyan};
+    cursor: pointer;
+  }
 `;
 export const SignInModalContainer = styled.div`
   width: 568px;

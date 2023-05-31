@@ -1,4 +1,5 @@
 import { dayList, monthList, yearList } from "../../lib/staticData";
+import Button from "../commons/button";
 import Input from "../commons/Input";
 import Selector from "../commons/selector";
 import CloseEyeIcon from "../commons/svg/closeEye";
@@ -102,6 +103,13 @@ export default function SignUpModal(): JSX.Element {
             </div>
           </div>
         </section>
+        <section className="signUp-modal-submit-button-wrap">
+          <Button>가입하기</Button>
+        </section>
+        <div className="signUp-Under-Move-to-Login">
+          <span className="Under-question">이미 에어비앤비 계정이 있나요?</span>
+          <span className="move-login">로그인</span>
+        </div>
       </SignUpModalContainer>
     </>
   );
