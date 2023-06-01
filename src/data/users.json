@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "email": "123@123.com",
+    "firstname": "J",
+    "lastname": "JJ",
+    "password": "$2a$08$IzaL1TQO6d80C0rBAE3WPu6RmsZdQV9pm9.Z5uexvNv77OUBnap2e",
+    "birthday": "2001-01-01T15:00:00.000Z",
+    "profileImage": "/static/image/user/default_user_profile_image.jpg"
+  },
+  {
+    "id": 2,
+    "email": "yj123@123.com",
+    "firstname": "yj",
+    "lastname": "123",
+    "password": "$2a$08$QIXsh7Sg8vv/OGlhD.hY9.uYMHyi9UdlssVvfF88OHbutWT.UX0EO",
+    "birthday": "2009-09-02T15:00:00.000Z",
+    "profileImage": "/static/image/user/default_user_profile_image.jpg"
+  }
+]

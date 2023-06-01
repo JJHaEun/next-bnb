@@ -9,6 +9,7 @@ import OpenEyeIcon from "../commons/svg/openEye";
 import PersonIcon from "../commons/svg/person";
 import { useSignUpInput } from "../event/hooks/useSignUpInput";
 import { useSignUpSelector } from "../event/hooks/useSignUpSelect";
+import { useSubmitSignUp } from "../event/hooks/useSubmitSignUp";
 import { SignUpModalContainer } from "../styles/modal/signModal.styles";
 
 export default function SignUpModal(): JSX.Element {
@@ -16,9 +17,10 @@ export default function SignUpModal(): JSX.Element {
     useSignUpInput();
 
   const { birthDate, onChangeBirthDate } = useSignUpSelector();
+  const { onSubmitSignUp } = useSubmitSignUp(birthDate)(user);
   return (
     <>
-      <SignUpModalContainer>
+      <SignUpModalContainer onSubmit={onSubmitSignUp}>
         <CloseIcon className="modal-close-x-icon" />
 
         <section>
@@ -34,8 +36,8 @@ export default function SignUpModal(): JSX.Element {
           </div>
           <div className="input-wrap">
             <Input
-              value={user.lastName}
-              id="lastName"
+              value={user.lastname}
+              id="lastname"
               placeholder="이름(예: 길동)"
               icon={<PersonIcon />}
               onChange={onChangeUser}
@@ -43,8 +45,8 @@ export default function SignUpModal(): JSX.Element {
           </div>
           <div className="input-wrap">
             <Input
-              value={user.firstName}
-              id="firstName"
+              value={user.firstname}
+              id="firstname"
               placeholder="성(예: 홍)"
               icon={<PersonIcon />}
               onChange={onChangeUser}

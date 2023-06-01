@@ -3,8 +3,8 @@ import { ChangeEvent, useState } from "react";
 export const useSignUpInput = () => {
   const [user, setUser] = useState({
     email: "",
-    lastName: "",
-    firstName: "",
+    lastname: "",
+    firstname: "",
     password: "",
   });
 

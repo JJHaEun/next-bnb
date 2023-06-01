@@ -34,7 +34,9 @@ ReactDom.createPotal(child, container);
       // access_token이라는 쿠키명에 token을 저자으 httponly로 api통신에서만 쿠키값을 불러올 수 있게함.
       `access_token=${token}; path=/; expires=${new Date(
         Date.now() + 60 * 60 * 24 * 1000 * 3 // 토근 만료기간 => 3일
-      )}; httponly`
+        // Date.now() +  60 * 60 * 24 * 1000 => 1일
+      ).toUTCString()}; httponly`
+      // .toUTCString()이 메서드를 사용하여 쿠키저장시의 날짜 형식으로 변환.
     );
     ```
 ````
