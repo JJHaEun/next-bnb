@@ -12,3 +12,29 @@ ReactDom.createPotal(child, container);
 ```
 
 이런식으로 사용하게되며 첫번째 인자로는 리엑트 컴포넌트를 받고, 두번째 인자로는 리엑트 컴포넌트를 넣을 Dom을 받게된다.
+
+---
+
+#### bcryptjs라는 라이브러리를 사용하여 비밀번호 암호화하기
+
+> yarn add bcryptjs
+> yarn add @types/bcryptjs
+
+#### jwt토큰을 사용하기 위해 jsonwebtoken설치
+
+> yarn add jsonwebtoken
+> yarn add @types/jsonwebtoken
+
+>
+
+````js
+  // 만들어진 토큰을 브라우저 쿠키에 저장하기위해 res헤더에 Set-Cookie설정
+    res.setHeader(
+      "Set-Cookie",
+      // access_token이라는 쿠키명에 token을 저자으 httponly로 api통신에서만 쿠키값을 불러올 수 있게함.
+      `access_token=${token}; path=/; expires=${new Date(
+        Date.now() + 60 * 60 * 24 * 1000 * 3 // 토근 만료기간 => 3일
+      )}; httponly`
+    );
+    ```
+````
