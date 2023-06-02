@@ -1,8 +1,9 @@
 import { AppProps } from "next/app";
 import Header from "../src/components/header/header";
+import { wrapper } from "../store";
 import { GlobalStyle } from "../styles/GlobalStyles";
 
-export default function App({ Component, pageProps }: AppProps): JSX.Element {
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <GlobalStyle />
@@ -11,4 +12,5 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
       <div id="root-modal" />
     </>
   );
-}
+};
+export default wrapper.withRedux(App);
