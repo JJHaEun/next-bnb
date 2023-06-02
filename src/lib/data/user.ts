@@ -2,7 +2,7 @@
 
 import { readFileSync, writeFileSync } from "fs";
 
-export type UserType = {
+export type StoredUserType = {
   id: number;
   email: string;
   password: string;
@@ -18,7 +18,7 @@ const getUserList = () => {
   if (!usersString) {
     return [];
   }
-  const users: UserType[] = JSON.parse(usersString);
+  const users: StoredUserType[] = JSON.parse(usersString);
   return users;
 };
 
@@ -29,7 +29,7 @@ const userExist = ({ email }: { email: string }) => {
 };
 
 // 유저리스트(유저정보)저장하기
-const writeUser = async (users: UserType[]) => {
+const writeUser = async (users: StoredUserType[]) => {
   writeFileSync("src/data/users.json", JSON.stringify(users));
 };
 

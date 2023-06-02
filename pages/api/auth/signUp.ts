@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { Data } from "../../../src/lib/data";
-import { UserType } from "../../../src/lib/data/user";
+import { StoredUserType } from "../../../src/lib/data/user";
 import { SignUpAPIBody } from "../../../src/lib/api/auth";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -27,7 +27,7 @@ export default function SignUpAPI(req: NextApiRequest, res: NextApiResponse) {
     } else {
       userId = users[users.length - 1].id + 1;
     }
-    const newUser: UserType = {
+    const newUser: StoredUserType = {
       id: userId,
       email,
       firstname,
@@ -38,7 +38,9 @@ export default function SignUpAPI(req: NextApiRequest, res: NextApiResponse) {
     };
     Data.user.writeUser([...users, newUser]); // 유저정보 저장
     const token = jwt.sign(String(newUser.id), process.env.JWT_SECRET!);
-
+    const newUserWithoutPassword: Partial<Pick<StoredUserType, "password">> =
+      newUser;
+    delete newUserWithoutPassword.password;
     // 만들어진 토큰을 브라우저 쿠키에 저장하기(응답(=res) 헤더에 Set-Cookie설정.)
     res.setHeader(
       "Set-Cookie",
@@ -48,7 +50,7 @@ export default function SignUpAPI(req: NextApiRequest, res: NextApiResponse) {
     );
 
     res.statusCode = 200;
-    return res.end();
+    return res.send(newUser);
   }
 
   res.statusCode = 405;
