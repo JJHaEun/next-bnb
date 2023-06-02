@@ -1,8 +1,8 @@
 export type UserType = {
-  id: number;
+  id?: number;
   email: string;
   firstname: string;
   lastname: string;
-  birthday: string;
-  profileImage: string;
+  birthday: Date | null;
+  profileImage?: string;
 };

@@ -1,11 +1,15 @@
 import { FormEvent } from "react";
+import { useDispatch } from "react-redux";
+import { userActions } from "../../../../store/user";
 import { signUpAPI, SignUpAPIBody } from "../../../lib/api/auth";
 
 export const useSubmitSignUp =
   (birthDate: { birthMonth: string; birthDay: string; birthYear: string }) =>
   (user: SignUpAPIBody) => {
-    const onSubmitSignUp = (e: FormEvent<HTMLFormElement>) => {
+    const dispatch = useDispatch();
+    const onSubmitSignUp = async (e: FormEvent<HTMLFormElement>) => {
       e?.preventDefault();
+
       try {
         const signUpBody = {
           email: user.email,
@@ -18,7 +22,9 @@ export const useSubmitSignUp =
             }`
           ).toISOString(),
         };
-        signUpAPI(signUpBody);
+        const { data } = await signUpAPI(signUpBody);
+        dispatch(userActions.setLoggedInUser(data));
+        // closeModalPortal();
         alert("회원가입 완료!!");
       } catch (e) {
         console.log(e);

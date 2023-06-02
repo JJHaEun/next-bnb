@@ -9,6 +9,5 @@ export interface SignUpAPIBody {
   birthday?: string;
 }
 
-export const signUpAPI = async (body: SignUpAPIBody) => {
+export const signUpAPI = async (body: SignUpAPIBody) =>
   await axios.post<UserType>("/api/auth/signUp", body);
-};
