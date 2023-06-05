@@ -10,7 +10,7 @@ export const SignUpModalContainer = styled.form`
   > section {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    /* gap: 16px; */
   }
   .modal-close-x-icon {
     cursor: pointer;

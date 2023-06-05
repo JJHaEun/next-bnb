@@ -17,7 +17,7 @@ export default function SignUpModal(): JSX.Element {
     useSignUpInput();
 
   const { birthDate, onChangeBirthDate } = useSignUpSelector();
-  const { onSubmitSignUp } = useSubmitSignUp(birthDate)(user);
+  const { onSubmitSignUp, validateMode } = useSubmitSignUp(birthDate)(user);
   return (
     <>
       <SignUpModalContainer onSubmit={onSubmitSignUp}>
@@ -32,6 +32,10 @@ export default function SignUpModal(): JSX.Element {
               placeholder="이메일 주소"
               icon={<EmailIcon />}
               onChange={onChangeUser}
+              validateMode={validateMode}
+              useValidation
+              isValid={!!user.email}
+              errorMessage="이메일을 입력해주세요"
             />
           </div>
           <div className="input-wrap">
@@ -41,6 +45,10 @@ export default function SignUpModal(): JSX.Element {
               placeholder="이름(예: 길동)"
               icon={<PersonIcon />}
               onChange={onChangeUser}
+              validateMode={validateMode}
+              useValidation
+              isValid={!!user.lastname}
+              errorMessage="이름을 입력해주세요"
             />
           </div>
           <div className="input-wrap">
@@ -50,6 +58,10 @@ export default function SignUpModal(): JSX.Element {
               placeholder="성(예: 홍)"
               icon={<PersonIcon />}
               onChange={onChangeUser}
+              validateMode={validateMode}
+              useValidation
+              isValid={!!user.firstname}
+              errorMessage="성을 입력해주세요"
             />
           </div>
           <div className="input-wrap">
@@ -66,6 +78,10 @@ export default function SignUpModal(): JSX.Element {
                 )
               }
               onChange={onChangeUser}
+              validateMode={validateMode}
+              useValidation
+              isValid={!!user.password}
+              errorMessage="비밀번호를 입력해주세요"
             />
           </div>
         </section>

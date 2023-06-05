@@ -3,18 +3,34 @@ import { InputContainer } from "../styles/Input/input.styles";
 
 interface InputIProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: JSX.Element;
-  error?: string;
+  isValid?: boolean;
+  useValidation?: boolean;
+  validateMode?: boolean;
+  errorMessage?: string;
 }
 
 export default function Input({
   icon,
-  error,
+  isValid = false,
+  errorMessage,
+  useValidation = true,
+  validateMode,
   ...props
 }: InputIProps): JSX.Element {
   return (
-    <InputContainer iconExist={!!icon} error={error}>
+    <InputContainer
+      iconExist={!!icon}
+      isValid={isValid}
+      errorMessage={errorMessage}
+      useValidation={validateMode && useValidation}
+    >
       <input {...props} />
-      <div className="input-icon-wrap">{icon}</div>
+      {icon}
+      {useValidation && validateMode && !isValid && errorMessage ? (
+        <p className="input-error-message">{errorMessage}</p>
+      ) : (
+        <p className="input-error-message"></p>
+      )}
     </InputContainer>
   );
 }

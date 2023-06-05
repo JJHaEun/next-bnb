@@ -1,4 +1,4 @@
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../../../store/user";
 import { signUpAPI, SignUpAPIBody } from "../../../lib/api/auth";
@@ -6,10 +6,15 @@ import { signUpAPI, SignUpAPIBody } from "../../../lib/api/auth";
 export const useSubmitSignUp =
   (birthDate: { birthMonth: string; birthDay: string; birthYear: string }) =>
   (user: SignUpAPIBody) => {
+    const [validateMode, setValidateMode] = useState(false);
     const dispatch = useDispatch();
     const onSubmitSignUp = async (e: FormEvent<HTMLFormElement>) => {
       e?.preventDefault();
 
+      setValidateMode(true);
+      if (!user.email || !user.lastname || !user.firstname! || !user.password) {
+        return undefined;
+      }
       try {
         const signUpBody = {
           email: user.email,
@@ -23,7 +28,7 @@ export const useSubmitSignUp =
           ).toISOString(),
         };
         const { data } = await signUpAPI(signUpBody);
-        dispatch(userActions.setLoggedInUser(data));
+        dispatch(userActions.setLoggedInUser(data)); // 리덕스의 state에 저장하기
         // closeModalPortal();
         alert("회원가입 완료!!");
       } catch (e) {
@@ -32,5 +37,6 @@ export const useSubmitSignUp =
     };
     return {
       onSubmitSignUp,
+      validateMode,
     };
   };
