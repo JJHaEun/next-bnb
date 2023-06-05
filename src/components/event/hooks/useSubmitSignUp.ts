@@ -4,16 +4,19 @@ import { useSelector } from "../../../../store";
 import { commonActions } from "../../../../store/common";
 import { userActions } from "../../../../store/user";
 import { signUpAPI, SignUpAPIBody } from "../../../lib/api/auth";
+import { useValidateMode } from "./useValidateMode";
 
 export const useSubmitSignUp =
   (birthDate: { birthMonth: string; birthDay: string; birthYear: string }) =>
   (user: SignUpAPIBody) => {
-    const validateMode = useSelector((state) => state.common.validateMode);
     const dispatch = useDispatch();
+    const { setValidateMode, validateMode } = useValidateMode();
+
     const onSubmitSignUp = async (e: FormEvent<HTMLFormElement>) => {
       e?.preventDefault();
 
-      dispatch(commonActions.setValidateMode(true));
+      setValidateMode(true);
+
       if (!user.email || !user.lastname || !user.firstname! || !user.password) {
         return undefined;
       }
