@@ -1,17 +1,19 @@
 import { FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useSelector } from "../../../../store";
+import { commonActions } from "../../../../store/common";
 import { userActions } from "../../../../store/user";
 import { signUpAPI, SignUpAPIBody } from "../../../lib/api/auth";
 
 export const useSubmitSignUp =
   (birthDate: { birthMonth: string; birthDay: string; birthYear: string }) =>
   (user: SignUpAPIBody) => {
-    const [validateMode, setValidateMode] = useState(false);
+    const validateMode = useSelector((state) => state.common.validateMode);
     const dispatch = useDispatch();
     const onSubmitSignUp = async (e: FormEvent<HTMLFormElement>) => {
       e?.preventDefault();
 
-      setValidateMode(true);
+      dispatch(commonActions.setValidateMode(true));
       if (!user.email || !user.lastname || !user.firstname! || !user.password) {
         return undefined;
       }
