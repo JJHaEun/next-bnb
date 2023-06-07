@@ -1,1 +1,11 @@
-[{"id":1,"email":"123@123.com","firstname":"J","lastname":"JJ","password":"$2a$08$cYbCwuF0mCjfqNkCXvg67.EP.lJKqUKAhuBoegaPhon4BRzz4eh8.","birthday":"2007-07-01T15:00:00.000Z","profileImage":"/static/image/user/default_user_profile_image.jpg"}]
+[
+  {
+    "id": 1,
+    "email": "123@123.com",
+    "firstname": "J",
+    "lastname": "JJ",
+    "password": "$2a$08$cYbCwuF0mCjfqNkCXvg67.EP.lJKqUKAhuBoegaPhon4BRzz4eh8.",
+    "birthday": "2007-07-01T15:00:00.000Z",
+    "profileImage": "/static/image/user/default_user_profile_image.jpg"
+  }
+]

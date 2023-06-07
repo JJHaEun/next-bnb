@@ -7,10 +7,13 @@ import CloseIcon from "../commons/svg/closeIcon";
 import EmailIcon from "../commons/svg/email";
 import OpenEyeIcon from "../commons/svg/openEye";
 import PersonIcon from "../commons/svg/person";
+import { useOnFocusPassword } from "../event/hooks/useonFocusedPassword";
+import { usePasswordValidation } from "../event/hooks/usePasswordvalidation";
 import { useSignUpInput } from "../event/hooks/useSignUpInput";
 import { useSignUpSelector } from "../event/hooks/useSignUpSelect";
 import { useSubmitSignUp } from "../event/hooks/useSubmitSignUp";
 import { SignUpModalContainer } from "../styles/modal/signModal.styles";
+import PasswordWarning from "./passwordWarning";
 
 export default function SignUpModal(): JSX.Element {
   const { onChangeUser, user, hidePassword, toggleHidePassword } =
@@ -18,6 +21,12 @@ export default function SignUpModal(): JSX.Element {
 
   const { birthDate, onChangeBirthDate } = useSignUpSelector();
   const { onSubmitSignUp, validateMode } = useSubmitSignUp(birthDate)(user);
+  const { onFocusPassword, passwordFocused } = useOnFocusPassword();
+  const {
+    isPasswordHasNameOrEmail,
+    isPasswordHasNumberOrSymbol,
+    isPasswordMinLength,
+  } = usePasswordValidation(user);
   return (
     <>
       <SignUpModalContainer onSubmit={onSubmitSignUp}>
@@ -80,10 +89,28 @@ export default function SignUpModal(): JSX.Element {
               onChange={onChangeUser}
               validateMode={validateMode}
               useValidation
-              isValid={!!user.password}
+              isValid={
+                !isPasswordHasNameOrEmail &&
+                !isPasswordHasNumberOrSymbol &&
+                isPasswordMinLength
+              }
               errorMessage="비밀번호를 입력해주세요"
+              onFocus={onFocusPassword}
             />
           </div>
+          {passwordFocused && (
+            <>
+              <PasswordWarning
+                isValid={isPasswordHasNameOrEmail}
+                text="비밀번호에 본인 이름이나 이메일 주소를 포함할 수 없습니다."
+              />
+              <PasswordWarning isValid={!isPasswordMinLength} text="최소 8자" />
+              <PasswordWarning
+                isValid={isPasswordHasNumberOrSymbol}
+                text="숫자나 기호를 포함하세요"
+              />
+            </>
+          )}
         </section>
         <section className="select-section">
           <label className="signUp-birthday">생일</label>
