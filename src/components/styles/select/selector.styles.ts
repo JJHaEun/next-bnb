@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 import palette from "../../../../styles/palette";
 
 interface SelectPropsError {
-  error?: string;
   isValid: boolean;
   validateMode: boolean;
 }
@@ -26,15 +25,13 @@ export const SelectorContainer = styled.div<SelectPropsError>`
     &:focus {
       border-color: ${palette.dark_cyan};
     }
-    ${({ isValid, validateMode }) =>
-      validateMode &&
-      css`
-        select {
-          border-color: ${isValid
-            ? palette.dark_cyan
-            : palette.tawny} !important;
-          background-color: ${isValid ? "white" : palette.snow};
-        }
-      `}
   }
+  ${({ isValid, validateMode }) =>
+    validateMode &&
+    css`
+      select {
+        border-color: ${isValid ? palette.dark_cyan : palette.tawny} !important;
+        background-color: ${isValid ? "white" : palette.snow};
+      }
+    `}
 `;
