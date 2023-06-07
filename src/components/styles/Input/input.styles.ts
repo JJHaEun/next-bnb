@@ -10,7 +10,6 @@ import palette from "../../../../styles/palette";
 
 export const InputContainer = styled.div<{
   iconExist?: boolean;
-  errorMessage?: string;
   useValidation?: boolean;
   isValid?: boolean;
 }>`

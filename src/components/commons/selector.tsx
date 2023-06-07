@@ -1,22 +1,24 @@
 import { SelectHTMLAttributes } from "react";
+import { useSelector } from "../../../store";
 import { SelectorContainer } from "../styles/select/selector.styles";
 
 interface ISelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   options?: string[];
   value?: string[];
   disableOptions?: string[];
-  error?: string;
+  isValid?: boolean;
 }
 
 export default function Selector({
   options = [],
   disableOptions = [],
-  error,
+  isValid,
   ...props
 }: ISelectProps): JSX.Element {
   //options = [] 이것은 options값이 없을 경우의 기본값을 설정한것!!
+  const validateMode = useSelector((state) => state.common.validateMode);
   return (
-    <SelectorContainer error={error}>
+    <SelectorContainer isValid={!!isValid} validateMode={validateMode}>
       <select {...props}>
         {options.map((option, i) => (
           <option

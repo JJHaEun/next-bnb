@@ -126,6 +126,7 @@ export default function SignUpModal(): JSX.Element {
                 defaultValue={birthDate.birthMonth || "월"}
                 disableOptions={["월"]}
                 onChange={onChangeBirthDate}
+                isValid={!!birthDate.birthMonth}
               />
             </div>
             <div className="signUp-day-selector">
@@ -135,6 +136,7 @@ export default function SignUpModal(): JSX.Element {
                 defaultValue={birthDate.birthDay || "일"}
                 disableOptions={["일"]}
                 onChange={onChangeBirthDate}
+                isValid={!!birthDate.birthDay}
               />
             </div>
             <div className="signUp-year-selector">
@@ -144,6 +146,7 @@ export default function SignUpModal(): JSX.Element {
                 defaultValue={birthDate.birthYear || "년"}
                 disableOptions={["년"]}
                 onChange={onChangeBirthDate}
+                isValid={!!birthDate.birthYear}
               />
             </div>
           </div>
