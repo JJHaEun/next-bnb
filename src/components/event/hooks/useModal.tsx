@@ -9,25 +9,31 @@ interface IProps {
 export const useShowModalSign = () => {
   const [modalOpened, setModalOpened] = useState(false);
   const showSignModal = () => {
-    setModalOpened((prev) => !prev);
+    setModalOpened(true);
   };
-
+  const closeModal = () => {
+    setModalOpened(false);
+  };
   const ModalPortal = ({ children }: IProps) => {
     const ref = useRef<Element | null>();
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-      setOpen((prev) => !prev);
+      setOpen(true);
       if (document) {
         const dom = document.querySelector("#root-modal");
         ref.current = dom;
       }
     }, []);
 
-    if (ref.current && open) {
+    if (ref.current && open && modalOpened) {
       return createPortal(
         <S.Container>
-          <section className="modal-background" onClick={showSignModal} />
+          <section
+            className="modal-background"
+            role="presentation"
+            onClick={closeModal}
+          />
           {children}
         </S.Container>,
         ref.current
@@ -40,5 +46,6 @@ export const useShowModalSign = () => {
     modalOpened,
     showSignModal,
     ModalPortal,
+    closeModal,
   };
 };

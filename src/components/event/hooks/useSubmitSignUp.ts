@@ -1,4 +1,4 @@
-import { FormEvent } from "react";
+import { FormEvent, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../../../store/user";
 import { signUpAPI, SignUpAPIBody } from "../../../lib/api/auth";
@@ -7,7 +7,8 @@ import { useValidateMode } from "./useValidateMode";
 
 export const useSubmitSignUp =
   (birthDate: { birthMonth: string; birthDay: string; birthYear: string }) =>
-  (user: SignUpAPIBody) => {
+  (user: SignUpAPIBody) =>
+  (closeModal: () => void) => {
     const dispatch = useDispatch();
     const { setValidateMode, validateMode } = useValidateMode();
     const {
@@ -15,6 +16,13 @@ export const useSubmitSignUp =
       isPasswordHasNumberOrSymbol,
       isPasswordMinLength,
     } = usePasswordValidation(user);
+
+    useEffect(() => {
+      // 컴포넌트 언마운트시 setValidateMode끄기
+      return () => {
+        setValidateMode(false);
+      };
+    }, []);
 
     const validateSignUpForm = () => {
       // input에 값이 없을때
@@ -55,16 +63,16 @@ export const useSubmitSignUp =
             firstname: user.firstname,
             password: user.password,
             birthday: new Date(
-              `${birthDate.birthDay}-${birthDate.birthMonth!.replace(
+              `${birthDate.birthDay}-${birthDate.birthMonth.replace(
                 "월",
                 ""
-              )}-${birthDate.birthDay}`
-            ).toISOString(),
+              )}-${birthDate.birthYear}`
+            ).toString(),
           };
           const { data } = await signUpAPI(signUpBody);
           dispatch(userActions.setLoggedInUser(data)); // 리덕스의 state에 저장하기
-          // closeModalPortal();
-          alert("회원가입 완료!!");
+          closeModal();
+          // alert("회원가입 완료!!");
         } catch (e) {
           console.log(e);
         }

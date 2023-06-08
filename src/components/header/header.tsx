@@ -6,14 +6,12 @@ import { useShowModalSign } from "../event/hooks/useModal";
 import * as S from "../styles/header/header.styles";
 
 export default function Header(): JSX.Element {
-  const { modalOpened, showSignModal, ModalPortal } = useShowModalSign();
+  const { closeModal, showSignModal, ModalPortal } = useShowModalSign();
   return (
     <>
-      {modalOpened && (
-        <ModalPortal>
-          <SignUpModal />
-        </ModalPortal>
-      )}
+      <ModalPortal>
+        <SignUpModal closeModal={closeModal} />
+      </ModalPortal>
       <S.Container>
         <Link href="/" legacyBehavior>
           <a className="header-logo-wrap">

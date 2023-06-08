@@ -1,1 +1,11 @@
-[{"id":1,"email":"123@123.com","firstname":"J","lastname":"JJ","password":"$2a$08$cYbCwuF0mCjfqNkCXvg67.EP.lJKqUKAhuBoegaPhon4BRzz4eh8.","birthday":"2007-07-01T15:00:00.000Z","profileImage":"/static/image/user/default_user_profile_image.jpg"},{"id":2,"email":"inTeresting@.gmail.com","firstname":"J","lastname":"JJ","password":"$2a$08$PQH4xb2N9fPc2LxORXb4J.Hhx2j9KOSb.ei95FQ744Vfe9s5jgcB6","birthday":"2005-05-04T15:00:00.000Z","profileImage":"/static/image/user/default_user_profile_image.jpg"}]
+[
+  {
+    "id": 1,
+    "email": "JJ@gmail.com",
+    "firstname": "J",
+    "lastname": "JJ",
+    "password": "$2a$08$CQFpwxLSdryZPggjiRsFcuvOIZZhD26FKLBiqdh/fZnje7OuOurD6",
+    "birthday": "Invalid Date",
+    "profileImage": "/static/image/user/default_user_profile_image.jpg"
+  }
+]

@@ -15,22 +15,27 @@ import { useSubmitSignUp } from "../event/hooks/useSubmitSignUp";
 import { SignUpModalContainer } from "../styles/modal/signModal.styles";
 import PasswordWarning from "./passwordWarning";
 
-export default function SignUpModal(): JSX.Element {
+interface IProps {
+  closeModal: () => void;
+}
+export default function SignUpModal({ closeModal }: IProps): JSX.Element {
   const { onChangeUser, user, hidePassword, toggleHidePassword } =
     useSignUpInput();
 
   const { birthDate, onChangeBirthDate } = useSignUpSelector();
-  const { onSubmitSignUp, validateMode } = useSubmitSignUp(birthDate)(user);
+  const { onSubmitSignUp, validateMode } =
+    useSubmitSignUp(birthDate)(user)(closeModal);
   const { onFocusPassword, passwordFocused } = useOnFocusPassword();
   const {
     isPasswordHasNameOrEmail,
     isPasswordHasNumberOrSymbol,
     isPasswordMinLength,
   } = usePasswordValidation(user);
+
   return (
     <>
       <SignUpModalContainer onSubmit={onSubmitSignUp}>
-        <CloseIcon className="modal-close-x-icon" />
+        <CloseIcon className="modal-close-x-icon" onClick={closeModal} />
 
         <section>
           <div className="input-wrap">

@@ -1,10 +1,16 @@
+import { useShowModalSign } from "../../event/hooks/useModal";
+
 interface IPropsCloseIcon {
   className: string;
+  onClick: () => void;
 }
 
-const CloseIconSVG = ({ className }: IPropsCloseIcon) => {
+export default function CloseIcon({
+  className,
+  onClick,
+}: IPropsCloseIcon): JSX.Element {
   return (
-    <span className={className}>
+    <span className={className} onClick={onClick}>
       <svg
         width="16"
         height="16"
@@ -21,7 +27,4 @@ const CloseIconSVG = ({ className }: IPropsCloseIcon) => {
       </svg>
     </span>
   );
-};
-export default function CloseIcon({ className }: IPropsCloseIcon): JSX.Element {
-  return <CloseIconSVG className={className} />;
 }
