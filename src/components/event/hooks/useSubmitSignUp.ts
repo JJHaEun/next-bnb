@@ -3,12 +3,11 @@ import { useDispatch } from "react-redux";
 import { userActions } from "../../../../store/user";
 import { signUpAPI, SignUpAPIBody } from "../../../lib/api/auth";
 import { usePasswordValidation } from "./usePasswordvalidation";
+import { useSignUpSelector } from "./useSignUpSelect";
 import { useValidateMode } from "./useValidateMode";
 
 export const useSubmitSignUp =
-  (birthDate: { birthMonth: string; birthDay: string; birthYear: string }) =>
-  (user: SignUpAPIBody) =>
-  (closeModal: () => void) => {
+  (user: SignUpAPIBody) => (closeModal: () => void) => {
     const dispatch = useDispatch();
     const { setValidateMode, validateMode } = useValidateMode();
     const {
@@ -16,7 +15,7 @@ export const useSubmitSignUp =
       isPasswordHasNumberOrSymbol,
       isPasswordMinLength,
     } = usePasswordValidation(user);
-
+    const { birthDay, birthMonth, birthYear } = useSignUpSelector();
     useEffect(() => {
       // 컴포넌트 언마운트시 setValidateMode끄기
       return () => {
@@ -40,11 +39,7 @@ export const useSubmitSignUp =
       }
 
       // 생년월일 셀렉터 값이 없을때
-      if (
-        !birthDate.birthDay ||
-        !birthDate.birthMonth ||
-        !birthDate.birthYear
-      ) {
+      if (!birthDay || !birthMonth || !birthYear) {
         return false;
       }
       return true;
@@ -63,11 +58,8 @@ export const useSubmitSignUp =
             firstname: user.firstname,
             password: user.password,
             birthday: new Date(
-              `${birthDate.birthDay}-${birthDate.birthMonth.replace(
-                "월",
-                ""
-              )}-${birthDate.birthYear}`
-            ).toString(),
+              `${birthDay}-${birthMonth?.replace("월", "")}-${birthYear}`
+            ).toISOString(),
           };
           const { data } = await signUpAPI(signUpBody);
           dispatch(userActions.setLoggedInUser(data)); // 리덕스의 state에 저장하기
