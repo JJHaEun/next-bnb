@@ -56,17 +56,6 @@ export const SignUpModalContainer = styled.form`
       padding: 14.5px 222px;
     }
   }
-  .signUp-Under-Move-to-Login {
-    padding: 16px 0 32px 0;
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-  }
-  .move-login {
-    font-weight: 600;
-    color: ${palette.dark_cyan};
-    cursor: pointer;
-  }
 `;
 export const SignInModalContainer = styled.div`
   width: 568px;

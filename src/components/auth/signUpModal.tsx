@@ -14,6 +14,7 @@ import { useSignUpSelector } from "../event/hooks/useSignUpSelect";
 import { useSubmitSignUp } from "../event/hooks/useSubmitSignUp";
 import { SignUpModalContainer } from "../styles/modal/signModal.styles";
 import PasswordWarning from "./passwordWarning";
+import SignUpModalFooter from "./signUpModal.footer";
 
 interface IProps {
   closeModal: () => void;
@@ -22,9 +23,15 @@ export default function SignUpModal({ closeModal }: IProps): JSX.Element {
   const { onChangeUser, user, hidePassword, toggleHidePassword } =
     useSignUpInput();
 
-  const { birthDate, onChangeBirthDate } = useSignUpSelector();
-  const { onSubmitSignUp, validateMode } =
-    useSubmitSignUp(birthDate)(user)(closeModal);
+  const {
+    birthYear,
+    birthDay,
+    birthMonth,
+    onChangeBirthYear,
+    onChangeBirthMonth,
+    onChangeBirthDay,
+  } = useSignUpSelector();
+  const { onSubmitSignUp, validateMode } = useSubmitSignUp(user)(closeModal);
   const { onFocusPassword, passwordFocused } = useOnFocusPassword();
   const {
     isPasswordHasNameOrEmail,
@@ -128,30 +135,30 @@ export default function SignUpModal({ closeModal }: IProps): JSX.Element {
               <Selector
                 name="birthMonth"
                 options={monthList}
-                defaultValue={birthDate.birthMonth || "월"}
+                defaultValue={birthMonth || "월"}
                 disableOptions={["월"]}
-                onChange={onChangeBirthDate}
-                isValid={!!birthDate.birthMonth}
+                onChange={onChangeBirthMonth}
+                isValid={!!birthMonth}
               />
             </div>
             <div className="signUp-day-selector">
               <Selector
                 name="birthDay"
                 options={dayList}
-                defaultValue={birthDate.birthDay || "일"}
+                defaultValue={birthDay || "일"}
                 disableOptions={["일"]}
-                onChange={onChangeBirthDate}
-                isValid={!!birthDate.birthDay}
+                onChange={onChangeBirthDay}
+                isValid={!!birthDay}
               />
             </div>
             <div className="signUp-year-selector">
               <Selector
                 name="birthYear"
                 options={yearList}
-                defaultValue={birthDate.birthYear || "년"}
+                defaultValue={birthYear || "년"}
                 disableOptions={["년"]}
-                onChange={onChangeBirthDate}
-                isValid={!!birthDate.birthYear}
+                onChange={onChangeBirthYear}
+                isValid={!!birthYear}
               />
             </div>
           </div>
@@ -159,10 +166,7 @@ export default function SignUpModal({ closeModal }: IProps): JSX.Element {
         <section className="signUp-modal-submit-button-wrap">
           <Button>가입하기</Button>
         </section>
-        <div className="signUp-Under-Move-to-Login">
-          <span className="Under-question">이미 에어비앤비 계정이 있나요?</span>
-          <span className="move-login">로그인</span>
-        </div>
+        <SignUpModalFooter />
       </SignUpModalContainer>
     </>
   );
