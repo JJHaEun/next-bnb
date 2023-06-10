@@ -1,3 +1,3 @@
 export interface PasswordIProps {
-  clickOpenClose: () => void;
+  clickOpenClose?: () => void;
 }

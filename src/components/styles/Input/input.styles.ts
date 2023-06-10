@@ -34,7 +34,7 @@ export const InputContainer = styled.div<{
   }
   svg {
     position: absolute;
-    /* top: 0px; */
+    top: 0px;
     right: 11px;
     height: 46px;
   }

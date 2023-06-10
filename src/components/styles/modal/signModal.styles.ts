@@ -20,7 +20,6 @@ export const SignUpModalContainer = styled.form`
   }
   .input-wrap {
     position: relative;
-    /* width: 568px; */
   }
   .select-section {
     padding: 16px 0;
@@ -56,10 +55,4 @@ export const SignUpModalContainer = styled.form`
       padding: 14.5px 222px;
     }
   }
-`;
-export const SignInModalContainer = styled.div`
-  width: 568px;
-  padding: 88px 32px 32px 32px;
-  background-color: white;
-  z-index: 12;
 `;

@@ -1,5 +1,8 @@
 import Link from "next/link";
+import { useDispatch } from "react-redux";
 import { useSelector } from "../../../store";
+import { authActions } from "../../../store/auth";
+import AuthModal from "../auth/authModal";
 import SignUpModal from "../auth/signUpModal";
 import HamburgerIcon from "../commons/svg/logInHeaderIcon";
 import AirBnBIconComponents from "../commons/svg/logoIcon";
@@ -9,11 +12,13 @@ import * as S from "../styles/header/header.styles";
 
 export default function Header(): JSX.Element {
   const { closeModal, showSignModal, ModalPortal } = useShowModalSign();
+  const dispatch = useDispatch();
+
   const user = useSelector((store) => store.user);
   return (
     <>
       <ModalPortal>
-        <SignUpModal closeModal={closeModal} />
+        <AuthModal closeModal={closeModal} />
       </ModalPortal>
       <S.Container>
         <Link href="/" legacyBehavior>
@@ -22,15 +27,29 @@ export default function Header(): JSX.Element {
             <AirBnBLogoTextComponents />
           </a>
         </Link>
-        {user.isLoggedIn && (
+        {!user.isLoggedIn && (
           <section className="header-sign-wrap">
-            <button className="signUp-button" onClick={showSignModal}>
+            <button
+              className="signUp-button"
+              onClick={() => {
+                dispatch(authActions.setAuthMode("signup")); // state변경
+                showSignModal();
+              }}
+            >
               회원가입
             </button>
-            <button className="signIn-button">로그인</button>
+            <button
+              className="signIn-button"
+              onClick={() => {
+                dispatch(authActions.setAuthMode("login"));
+                showSignModal();
+              }}
+            >
+              로그인
+            </button>
           </section>
         )}
-        {!user.isLoggedIn && (
+        {user.isLoggedIn && (
           <button className="header-user-profile">
             <HamburgerIcon />
             <img

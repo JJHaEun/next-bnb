@@ -14,7 +14,7 @@ import { useSignUpSelector } from "../event/hooks/useSignUpSelect";
 import { useSubmitSignUp } from "../event/hooks/useSubmitSignUp";
 import { SignUpModalContainer } from "../styles/modal/signModal.styles";
 import PasswordWarning from "./passwordWarning";
-import SignUpModalFooter from "./signUpModal.footer";
+import AuthModalFooter from "./signUpModal.footer";
 
 interface IProps {
   closeModal: () => void;
@@ -166,7 +166,10 @@ export default function SignUpModal({ closeModal }: IProps): JSX.Element {
         <section className="signUp-modal-submit-button-wrap">
           <Button>가입하기</Button>
         </section>
-        <SignUpModalFooter />
+        <AuthModalFooter
+          question={"이미 에어비앤비 계정이 있나요?"}
+          moveTo={"로그인"}
+        />
       </SignUpModalContainer>
     </>
   );

@@ -25,10 +25,8 @@ export default function Input({
     >
       <input {...props} />
       {icon}
-      {useValidation && validateMode && !isValid && errorMessage ? (
+      {useValidation && validateMode && !isValid && errorMessage && (
         <p className="input-error-message">{errorMessage}</p>
-      ) : (
-        <p className="input-error-message" />
       )}
     </InputContainer>
   );
