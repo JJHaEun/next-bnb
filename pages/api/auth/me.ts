@@ -24,7 +24,7 @@ export default function Me(req: NextApiRequest, res: NextApiResponse) {
 
       delete userWithoutPassword.password;
       res.statusCode = 200;
-      return res.send(userWithoutPassword);
+      return res.send(userWithoutPassword); //{data}
     } catch (e) {
       res.statusCode = 500;
       return res.send(e);

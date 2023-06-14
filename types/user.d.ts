@@ -3,6 +3,6 @@ export type UserType = {
   email: string;
   firstname: string;
   lastname: string;
-  birthday: Date | null;
+  birthday: string | null;
   profileImage?: string;
 };
