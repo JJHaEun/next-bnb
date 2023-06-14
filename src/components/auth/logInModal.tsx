@@ -8,7 +8,7 @@ import { useLogIn } from "../event/hooks/useLogIn";
 import { useSignUpInput } from "../event/hooks/useSignUpInput";
 import { useSubmitLogIn } from "../event/hooks/useSubmitLogIn";
 import { LogInContainer } from "../styles/modal/logInModal.styles";
-import AuthModalFooter from "./signUpModal.footer";
+import AuthModalFooter from "./Modal.footer";
 
 interface IProps {
   closeModal: () => void;
@@ -17,9 +17,10 @@ interface IProps {
 export default function LogInModal({ closeModal }: IProps): JSX.Element {
   const { hidePassword, toggleHidePassword } = useSignUpInput();
   const { loginInput, onChangeLoginInput, changeToSignUpModal } = useLogIn();
-  const { onSubmitLogIn } = useSubmitLogIn(loginInput);
+  const { onSubmitLogIn, validateMode } =
+    useSubmitLogIn(loginInput)(closeModal);
   return (
-    <LogInContainer>
+    <LogInContainer onSubmit={onSubmitLogIn}>
       <CloseIcon className="modal-close-x-icon" onClick={closeModal} />
       <section>
         <div className="input-wrap">
@@ -31,6 +32,10 @@ export default function LogInModal({ closeModal }: IProps): JSX.Element {
             id="email"
             value={loginInput.email}
             onChange={onChangeLoginInput}
+            validateMode={validateMode}
+            useValidation
+            isValid={loginInput.email !== ""}
+            errorMessage="이메일이 필요합니다."
           />
         </div>
         <div className="input-wrap">
@@ -47,6 +52,10 @@ export default function LogInModal({ closeModal }: IProps): JSX.Element {
             id="password"
             value={loginInput.password}
             onChange={onChangeLoginInput}
+            validateMode={validateMode}
+            useValidation
+            isValid={loginInput.password !== ""}
+            errorMessage="비밀번호를 입력하세요"
           />
         </div>
       </section>

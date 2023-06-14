@@ -37,7 +37,7 @@ const reducer = (state: any, action: any) => {
 // (useSelector를 useReduxSelector로 이름 바꿔서 import 한뒤, useSelector라는 이름으로 커스텀.)
 export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
 
-const initStore = () => {
+export const initStore = () => {
   const store = configureStore({
     reducer,
     devTools: true,

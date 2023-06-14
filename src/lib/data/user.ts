@@ -34,8 +34,8 @@ const writeUser = async (users: StoredUserType[]) => {
 };
 
 // 입력된 email의 유저정보 불러오기
-const find = ({ email }: { email: string }) => {
+const find = ({ email, id }: { email?: string; id?: number }) => {
   const users = getUserList();
-  return users.find((user) => user.email === email);
+  return users.find((user) => user.email === email || user.id === id);
 };
 export default { getUserList, userExist, writeUser, find };

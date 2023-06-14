@@ -19,3 +19,5 @@ export const signUpAPI = async (body: SignUpAPIBody) =>
 
 export const loginAPI = async (body: LoginAPIBody) =>
   await axios.post<UserType>("/api/auth/login", body);
+
+export const meAPI = async () => await axios.get<UserType>("/api/auth/me");

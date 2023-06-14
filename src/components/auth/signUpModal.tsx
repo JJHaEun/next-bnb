@@ -14,7 +14,7 @@ import { useSignUpSelector } from "../event/hooks/useSignUpSelect";
 import { useSubmitSignUp } from "../event/hooks/useSubmitSignUp";
 import { SignUpModalContainer } from "../styles/modal/signModal.styles";
 import PasswordWarning from "./passwordWarning";
-import AuthModalFooter from "./signUpModal.footer";
+import AuthModalFooter from "./Modal.footer";
 
 interface IProps {
   closeModal: () => void;
