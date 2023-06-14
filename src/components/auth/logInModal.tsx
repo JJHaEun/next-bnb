@@ -6,6 +6,7 @@ import EmailIcon from "../commons/svg/email";
 import OpenEyeIcon from "../commons/svg/openEye";
 import { useLogIn } from "../event/hooks/useLogIn";
 import { useSignUpInput } from "../event/hooks/useSignUpInput";
+import { useSubmitLogIn } from "../event/hooks/useSubmitLogIn";
 import { LogInContainer } from "../styles/modal/logInModal.styles";
 import AuthModalFooter from "./signUpModal.footer";
 
@@ -16,6 +17,7 @@ interface IProps {
 export default function LogInModal({ closeModal }: IProps): JSX.Element {
   const { hidePassword, toggleHidePassword } = useSignUpInput();
   const { loginInput, onChangeLoginInput, changeToSignUpModal } = useLogIn();
+  const { onSubmitLogIn } = useSubmitLogIn(loginInput);
   return (
     <LogInContainer>
       <CloseIcon className="modal-close-x-icon" onClick={closeModal} />

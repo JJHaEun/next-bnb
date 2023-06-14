@@ -33,4 +33,9 @@ const writeUser = async (users: StoredUserType[]) => {
   writeFileSync("src/data/users.json", JSON.stringify(users));
 };
 
-export default { getUserList, userExist, writeUser };
+// 입력된 email의 유저정보 불러오기
+const find = ({ email }: { email: string }) => {
+  const users = getUserList();
+  return users.find((user) => user.email === email);
+};
+export default { getUserList, userExist, writeUser, find };

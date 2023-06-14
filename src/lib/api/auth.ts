@@ -9,5 +9,13 @@ export interface SignUpAPIBody {
   birthday?: string;
 }
 
+export interface LoginAPIBody {
+  email: string;
+  password: string;
+}
+
 export const signUpAPI = async (body: SignUpAPIBody) =>
   await axios.post<UserType>("/api/auth/signUp", body);
+
+export const loginAPI = async (body: LoginAPIBody) =>
+  await axios.post<UserType>("/api/auth/login", body);
