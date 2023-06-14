@@ -4,6 +4,7 @@ import CloseEyeIcon from "../commons/svg/closeEye";
 import CloseIcon from "../commons/svg/closeIcon";
 import EmailIcon from "../commons/svg/email";
 import OpenEyeIcon from "../commons/svg/openEye";
+import { useLogIn } from "../event/hooks/useLogIn";
 import { useSignUpInput } from "../event/hooks/useSignUpInput";
 import { LogInContainer } from "../styles/modal/logInModal.styles";
 import AuthModalFooter from "./signUpModal.footer";
@@ -14,10 +15,10 @@ interface IProps {
 
 export default function LogInModal({ closeModal }: IProps): JSX.Element {
   const { hidePassword, toggleHidePassword } = useSignUpInput();
+  const { loginInput, onChangeLoginInput, changeToSignUpModal } = useLogIn();
   return (
     <LogInContainer>
       <CloseIcon className="modal-close-x-icon" onClick={closeModal} />
-
       <section>
         <div className="input-wrap">
           <Input
@@ -25,6 +26,9 @@ export default function LogInModal({ closeModal }: IProps): JSX.Element {
             name="email"
             type="email"
             icon={<EmailIcon />}
+            id="email"
+            value={loginInput.email}
+            onChange={onChangeLoginInput}
           />
         </div>
         <div className="input-wrap">
@@ -38,6 +42,9 @@ export default function LogInModal({ closeModal }: IProps): JSX.Element {
                 <CloseEyeIcon clickOpenClose={toggleHidePassword} />
               )
             }
+            id="password"
+            value={loginInput.password}
+            onChange={onChangeLoginInput}
           />
         </div>
       </section>
@@ -47,6 +54,7 @@ export default function LogInModal({ closeModal }: IProps): JSX.Element {
       <AuthModalFooter
         question={"에어비앤비 계정이 없으세요?"}
         moveTo={"회원가입"}
+        changeTo={changeToSignUpModal}
       />
     </LogInContainer>
   );

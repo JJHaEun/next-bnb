@@ -1,5 +1,6 @@
 import { FormEvent, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { authActions } from "../../../../store/auth";
 import { userActions } from "../../../../store/user";
 import { signUpAPI, SignUpAPIBody } from "../../../lib/api/auth";
 import { usePasswordValidation } from "./usePasswordvalidation";
@@ -70,8 +71,13 @@ export const useSubmitSignUp =
         }
       }
     };
+    // 회원가입 모달로 변경하기
+    const changeToLogInModal = () => {
+      dispatch(authActions.setAuthMode("login"));
+    };
     return {
       onSubmitSignUp,
       validateMode,
+      changeToLogInModal,
     };
   };

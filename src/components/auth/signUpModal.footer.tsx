@@ -15,14 +15,16 @@ const MoveToLogin = styled.div`
 interface IFooterProps {
   question: string;
   moveTo: string;
+  changeTo: () => void;
 }
 
 export default function AuthModalFooter({
   question,
   moveTo,
+  changeTo,
 }: IFooterProps): JSX.Element {
   return (
-    <MoveToLogin className="signUp-Under-Move-to-Login">
+    <MoveToLogin className="signUp-Under-Move-to-Login" onClick={changeTo}>
       <span className="Under-question">{question}</span>
       <span className="move-login">{moveTo}</span>
     </MoveToLogin>

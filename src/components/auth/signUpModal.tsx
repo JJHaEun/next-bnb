@@ -31,7 +31,8 @@ export default function SignUpModal({ closeModal }: IProps): JSX.Element {
     onChangeBirthMonth,
     onChangeBirthDay,
   } = useSignUpSelector();
-  const { onSubmitSignUp, validateMode } = useSubmitSignUp(user)(closeModal);
+  const { onSubmitSignUp, validateMode, changeToLogInModal } =
+    useSubmitSignUp(user)(closeModal);
   const { onFocusPassword, passwordFocused } = useOnFocusPassword();
   const {
     isPasswordHasNameOrEmail,
@@ -169,6 +170,7 @@ export default function SignUpModal({ closeModal }: IProps): JSX.Element {
         <AuthModalFooter
           question={"이미 에어비앤비 계정이 있나요?"}
           moveTo={"로그인"}
+          changeTo={changeToLogInModal}
         />
       </SignUpModalContainer>
     </>
