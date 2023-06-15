@@ -1,8 +1,10 @@
 import Link from "next/link";
+import { useLogout } from "../event/hooks/useLogout";
 import { useTopMenu } from "../event/hooks/useTopMenu";
 import { UserMenu } from "../styles/menu/userMenu.styles";
 export default function UserMenuComponent(): JSX.Element {
   const { menuOpen } = useTopMenu();
+  const { logout } = useLogout();
   return (
     <UserMenu>
       <li>숙소 관리</li>
@@ -13,7 +15,7 @@ export default function UserMenuComponent(): JSX.Element {
       </Link>
       <li
         role="presentation"
-        onClick={() => {}}
+        onClick={logout}
         className="header-usermenu-undder"
       >
         로그아웃
