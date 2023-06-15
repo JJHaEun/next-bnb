@@ -22,6 +22,12 @@ export const user = createSlice({
       state = { ...action.payload, isLoggedIn: true };
       return state;
     },
+
+    // 로그아웃클릭시 유저초기화하기
+    initUser(state) {
+      state = initialState;
+      return state;
+    },
   },
 });
 
