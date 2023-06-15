@@ -3,16 +3,19 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "../../../store";
 import { authActions } from "../../../store/auth";
 import AuthModal from "../auth/authModal";
-import SignUpModal from "../auth/signUpModal";
 import HamburgerIcon from "../commons/svg/logInHeaderIcon";
 import AirBnBIconComponents from "../commons/svg/logoIcon";
 import AirBnBLogoTextComponents from "../commons/svg/logoText";
 import { useShowModalSign } from "../event/hooks/useModal";
 import * as S from "../styles/header/header.styles";
+import OutsideClickHandler from "react-outside-click-handler";
+import { useTopMenu } from "../event/hooks/useTopMenu";
+import UserMenuComponent from "../menu/userMenu";
 
 export default function Header(): JSX.Element {
   const { closeModal, showSignModal, ModalPortal } = useShowModalSign();
   const dispatch = useDispatch();
+  const { menuOpendOutsideClick, menuOpen, isUserMenuOpend } = useTopMenu();
 
   const user = useSelector((store) => store.user);
   return (
@@ -50,14 +53,17 @@ export default function Header(): JSX.Element {
           </section>
         )}
         {user.isLoggedIn && (
-          <button className="header-user-profile">
-            <HamburgerIcon />
-            <img
-              src="/static/image/user/default_user_profile_image.jpg"
-              className="header-user-profile-img"
-              alt="유저"
-            />
-          </button>
+          <OutsideClickHandler onOutsideClick={menuOpendOutsideClick}>
+            <button className="header-user-profile" onClick={menuOpen}>
+              <HamburgerIcon />
+              <img
+                src="/static/image/user/default_user_profile_image.jpg"
+                className="header-user-profile-img"
+                alt="유저"
+              />
+            </button>
+            {isUserMenuOpend && <UserMenuComponent />}
+          </OutsideClickHandler>
         )}
       </S.Container>
     </>

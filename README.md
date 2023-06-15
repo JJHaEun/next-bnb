@@ -50,3 +50,34 @@ export const axios = Axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL, // axios요청할 기본 url 환경변수에 설정하고 여기 넣어줌.
 });
 ```
+
+---
+
+### react-outside-click-handler 를 사용하여 컴포넌트를 사용해 외부클릭시 원하는 이벤트 넣기
+
+> yarn add react-outside-click-handler
+
+docs를 살펴보니
+
+> ```js
+> import OutsideClickHandler from 'react-outside-click-handler';
+>
+> function MyComponent() {
+>   return (
+> ```
+
+    <OutsideClickHandler
+      onOutsideClick={() => {
+        alert('You clicked outside of this component!!!');
+      }}
+    >
+      Hello World
+    </OutsideClickHandler>
+
+);
+}
+
+```
+이렇게 컴포넌트를 import하여 묶어주면 되는듯 하다.
+
+```

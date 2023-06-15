@@ -13,6 +13,10 @@ const globalStyle = css`
     font-family: "AppleSDGothicNeo", "Noto Sans", "Noto Sans KR", sans-serif;
     font-size: 16px;
   }
+  a {
+    text-decoration: none;
+    /* color: ${palette.black_22}; */
+  }
 `;
 export const GlobalStyle = createGlobalStyle`
   ${globalStyle}

@@ -19,6 +19,9 @@ export const Container = styled.div`
     align-items: center;
     gap: 6px;
   }
+  .header-logo-wrap + div {
+    position: relative;
+  }
   .header-sign-wrap {
     display: flex;
     gap: 8px;
