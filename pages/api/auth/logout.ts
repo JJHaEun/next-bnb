@@ -7,7 +7,7 @@ export default function LogoutAPI(req: NextApiRequest, res: NextApiResponse) {
       // 로그아웃하기!
       res.setHeader(
         "Set-Cookie",
-        "access_token; path/; expires=Thu, 01 Jan 1907 00:00:00 GMT; httponly"
+        "access_token=; path=/; expires=Thu, 01 Jan 1907 00:00:00 GMT; httponly"
       );
       res.statusCode = 204;
       return res.end();
